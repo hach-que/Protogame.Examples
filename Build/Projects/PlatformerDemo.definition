@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Name="PlatformerDemo" Path="PlatformerDemo" Type="XNA">
+  <References>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Protogame" />
+    <Reference Include="Protogame.Efficiency" />
+    <Reference Include="Protogame.Structure" />
+    <Reference Include="MonoGame" />
+    <Reference Include="Ninject" />
+  </References>
+  <Files>
+    <Compile Include="Program.cs" />
+  </Files>
+</Project>
