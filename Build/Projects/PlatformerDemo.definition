@@ -9,8 +9,11 @@
     <Reference Include="Protogame.Structure" />
     <Reference Include="MonoGame" />
     <Reference Include="Ninject" />
+    <Reference Include="PlatformerDemo.Content" />
   </References>
   <Files>
+    <Compile Include="ExampleGame.cs" />
+    <Compile Include="ExampleWorld.cs" />
     <Compile Include="Program.cs" />
   </Files>
 </Project>

@@ -1,4 +1,5 @@
-using System;
+using Ninject;
+using Protogame;
 
 namespace PlatformerDemo
 {
@@ -6,7 +7,16 @@ namespace PlatformerDemo
     {
         public static void Main(string[] args)
         {
-            // TODO: Implement game.
+            var kernel = new StandardKernel();
+            kernel.Load<AssetIoCModule>();
+            kernel.Load<IoCModule>();
+            kernel.Load<Protogame.Platforming.IoCModule>();
+            kernel.Bind<IAssetManagerProvider>().To<LocalAssetManagerProvider>();
+        
+            using (var game = new ExampleGame(kernel))
+            {
+                game.Run();
+            }
         }
     }
 }
