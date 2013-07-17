@@ -5,8 +5,6 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Protogame" />
-    <Reference Include="Protogame.Efficiency" />
-    <Reference Include="Protogame.Structure" />
     <Reference Include="MonoGame" />
     <Reference Include="Ninject" />
     <Reference Include="PlatformerDemo.Content" />
