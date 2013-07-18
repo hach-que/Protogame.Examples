@@ -1,5 +1,4 @@
 using Protogame;
-using Protogame.Platforming;
 using Microsoft.Xna.Framework;
 
 namespace PlatformerDemo

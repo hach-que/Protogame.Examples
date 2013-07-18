@@ -31,7 +31,7 @@ namespace PlatformerDemo
             this.m_RenderUtilities.RenderText(
                 renderContext,
                 new Vector2(10, 10),
-                "Testing World " + gameContext.FPS,
+                "Testing World " + gameContext.FPS + " " + gameContext.FrameCount,
                 this.m_AssetManager.Get<FontAsset>("font.Arial"));
         }
 
