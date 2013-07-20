@@ -21,12 +21,12 @@ namespace PlatformerDemo
             this.m_Texture = this.m_AssetManager.Get<TextureAsset>("texture.Player");
         }
         
-        public override void Render(IRenderContext context)
+        public override void Render(IGameContext gameContext, IRenderContext renderContext)
         {
-            base.Render(context);
+            base.Render(gameContext, renderContext);
             
             this.m_RenderUtilities.RenderTexture(
-                context,
+                renderContext,
                 new Vector2(this.X, this.Y),
                 this.m_Texture);
         }

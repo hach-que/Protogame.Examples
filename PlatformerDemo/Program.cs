@@ -1,5 +1,6 @@
 using Ninject;
 using Protogame;
+using ProtogameAssetManager;
 
 namespace PlatformerDemo
 {
@@ -8,10 +9,10 @@ namespace PlatformerDemo
         public static void Main(string[] args)
         {
             var kernel = new StandardKernel();
-            kernel.Load<AssetIoCModule>();
             kernel.Load<IoCModule>();
+            kernel.Load<AssetIoCModule>();
             kernel.Load<PlatformingIoCModule>();
-            kernel.Bind<IAssetManagerProvider>().To<LocalAssetManagerProvider>();
+            AssetManagerClient.AcceptArgumentsAndSetup<LocalAssetManagerProvider>(kernel, args);
         
             using (var game = new ExampleGame(kernel))
             {

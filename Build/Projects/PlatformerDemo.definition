@@ -8,6 +8,7 @@
     <Reference Include="MonoGame" />
     <Reference Include="Ninject" />
     <Reference Include="PlatformerDemo.Content" />
+    <Reference Include="ProtogameAssetManager" />
   </References>
   <Files>
     <Compile Include="Entities\Player.cs" />
