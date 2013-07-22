@@ -32,7 +32,7 @@ namespace PlatformerDemo
                 renderContext,
                 new Vector2(10, 10),
                 "Testing World " + gameContext.FPS + " " + gameContext.FrameCount,
-                this.m_AssetManager.Get<FontAsset>("font.Arial"));
+                this.m_AssetManager.Get<FontAsset>("font.Main"));
         }
 
         public void Update(IGameContext gameContext, IUpdateContext updateContext)
