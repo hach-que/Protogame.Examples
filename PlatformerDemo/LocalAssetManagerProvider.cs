@@ -15,13 +15,11 @@ namespace PlatformerDemo
             IEnumerable<IAssetLoader> loaders,
             IEnumerable<IAssetSaver> savers)
         {
-            var file = new FileInfo(Assembly.GetExecutingAssembly().Location);
             this.m_AssetManager = new LocalAssetManager(
                 rawLoader,
                 rawSaver,
                 loaders,
-                savers,
-                Path.Combine(file.Directory.FullName, "Content"));
+                savers);
         }
 
         public bool IsReady
