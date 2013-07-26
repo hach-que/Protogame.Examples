@@ -12,12 +12,20 @@ namespace PlatformerDemo
         public List<IEntity> Entities { get; private set; }
     
         public ExampleWorld(
+            IPlatforming platforming,
             IRenderUtilities renderUtilities,
-            IAssetManagerProvider assetManagerProvider)
+            IAssetManagerProvider assetManagerProvider,
+            IAudioUtilities audioUtilities)
         {
             this.m_RenderUtilities = renderUtilities;
             this.m_AssetManager = assetManagerProvider.GetAssetManager(false);
             this.Entities = new List<IEntity>();
+            
+            this.Entities.Add(new Player(
+                platforming,
+                this.m_AssetManager,
+                this.m_RenderUtilities,
+                audioUtilities));
         }
 
         public void RenderBelow(IGameContext gameContext, IRenderContext renderContext)
