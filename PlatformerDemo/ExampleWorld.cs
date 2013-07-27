@@ -8,6 +8,7 @@ namespace PlatformerDemo
     {
         private IRenderUtilities m_RenderUtilities;
         private IAssetManager m_AssetManager;
+        private IProfiler m_Profiler;
 
         public List<IEntity> Entities { get; private set; }
     
@@ -15,9 +16,11 @@ namespace PlatformerDemo
             IPlatforming platforming,
             IRenderUtilities renderUtilities,
             IAssetManagerProvider assetManagerProvider,
-            IAudioUtilities audioUtilities)
+            IAudioUtilities audioUtilities,
+            IProfiler profiler)
         {
             this.m_RenderUtilities = renderUtilities;
+            this.m_Profiler = profiler;
             this.m_AssetManager = assetManagerProvider.GetAssetManager(false);
             this.Entities = new List<IEntity>();
             
@@ -30,8 +33,14 @@ namespace PlatformerDemo
 
         public void RenderBelow(IGameContext gameContext, IRenderContext renderContext)
         {
-            gameContext.ResizeWindow(800, 600);
-            gameContext.Graphics.GraphicsDevice.Clear(Color.Black);
+            using (this.m_Profiler.Measure("resize_window"))
+            {
+                gameContext.ResizeWindow(800, 600);
+            }
+            using (this.m_Profiler.Measure("clear"))
+            {
+                gameContext.Graphics.GraphicsDevice.Clear(Color.Black);
+            }
         }
 
         public void RenderAbove(IGameContext gameContext, IRenderContext renderContext)
