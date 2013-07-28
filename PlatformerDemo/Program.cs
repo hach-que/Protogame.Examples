@@ -12,7 +12,6 @@ namespace PlatformerDemo
             kernel.Load<ProtogameIoCModule>();
             kernel.Load<ProtogameAssetIoCModule>();
             kernel.Load<ProtogamePlatformingIoCModule>();
-            kernel.Load<ProtogamePerformanceIoCModule>();
             AssetManagerClient.AcceptArgumentsAndSetup<LocalAssetManagerProvider>(kernel, args);
         
             using (var game = new ExampleGame(kernel))
