@@ -9,6 +9,7 @@ namespace PlatformerDemo
         private IRenderUtilities m_RenderUtilities;
         private IAssetManager m_AssetManager;
         private IProfiler m_Profiler;
+        private ILevelManager m_LevelManager;
 
         public List<IEntity> Entities { get; private set; }
     
@@ -17,10 +18,12 @@ namespace PlatformerDemo
             IRenderUtilities renderUtilities,
             IAssetManagerProvider assetManagerProvider,
             IAudioUtilities audioUtilities,
-            IProfiler profiler)
+            IProfiler profiler,
+            ILevelManager levelManager)
         {
             this.m_RenderUtilities = renderUtilities;
             this.m_Profiler = profiler;
+            this.m_LevelManager = levelManager;
             this.m_AssetManager = assetManagerProvider.GetAssetManager(false);
             this.Entities = new List<IEntity>();
             
@@ -29,6 +32,8 @@ namespace PlatformerDemo
                 this.m_AssetManager,
                 this.m_RenderUtilities,
                 audioUtilities));
+                
+            this.m_LevelManager.Load(this, "level.Level0");
         }
 
         public void RenderBelow(IGameContext gameContext, IRenderContext renderContext)
@@ -39,7 +44,7 @@ namespace PlatformerDemo
             }
             using (this.m_Profiler.Measure("clear"))
             {
-                gameContext.Graphics.GraphicsDevice.Clear(Color.Black);
+                gameContext.Graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
             }
         }
 
@@ -47,9 +52,22 @@ namespace PlatformerDemo
         {
             this.m_RenderUtilities.RenderText(
                 renderContext,
-                new Vector2(10, 10),
-                "Testing World " + gameContext.FPS + " " + gameContext.FrameCount,
-                this.m_AssetManager.Get<FontAsset>("font.Main"));
+                new Vector2(gameContext.Window.ClientBounds.Width / 2, 10),
+                "Platformer Demo",
+                this.m_AssetManager.Get<FontAsset>("font.Main"),
+                horizontalAlignment: HorizontalAlignment.Center);
+            this.m_RenderUtilities.RenderText(
+                renderContext,
+                new Vector2(gameContext.Window.ClientBounds.Width / 2, 24),
+                gameContext.FPS + " FPS",
+                this.m_AssetManager.Get<FontAsset>("font.Main"),
+                horizontalAlignment: HorizontalAlignment.Center);
+            this.m_RenderUtilities.RenderText(
+                renderContext,
+                new Vector2(gameContext.Window.ClientBounds.Width / 2, 38),
+                gameContext.FrameCount + " Frames",
+                this.m_AssetManager.Get<FontAsset>("font.Main"),
+                horizontalAlignment: HorizontalAlignment.Center);
         }
 
         public void Update(IGameContext gameContext, IUpdateContext updateContext)
