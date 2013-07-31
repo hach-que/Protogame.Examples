@@ -16,6 +16,9 @@
     <Compile Include="ExampleWorld.cs" />
     <Compile Include="LocalAssetManagerProvider.cs" />
     <Compile Include="Program.cs" />
-    <None Include="App.config" />
+    <None Include="..\Protogame\ThirdParty\MonoGame\ThirdParty\Libs\OpenTK.dll.config">
+      <Link>OpenTK.dll.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </Files>
 </Project>
