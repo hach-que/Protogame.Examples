@@ -8,6 +8,7 @@ namespace PlatformerDemo
     
         public int TX { get; set; }
         public int TY { get; set; }
+        public TilesetAsset Tileset { get; set; }
     
         public Dirt(ITileUtilities tileUtilities, float x, float y, int tx, int ty)
         {
@@ -18,7 +19,7 @@ namespace PlatformerDemo
             this.TX = tx;
             this.TY = ty;
             
-            this.m_TileUtilities.AdjustTileBounds(this, 16, 16);
+            this.m_TileUtilities.InitializeTile(this, "tileset.Dirt");
         }
         
         public override void Render(IGameContext gameContext, IRenderContext renderContext)
