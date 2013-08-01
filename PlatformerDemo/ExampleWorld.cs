@@ -31,7 +31,7 @@ namespace PlatformerDemo
                 platforming,
                 this.m_AssetManager,
                 this.m_RenderUtilities,
-                audioUtilities));
+                audioUtilities) { X = 400 });
                 
             this.m_LevelManager.Load(this, "level.Level0");
         }

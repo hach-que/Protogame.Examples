@@ -1,6 +1,7 @@
 using Protogame;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System.Linq;
 
 namespace PlatformerDemo
 {
@@ -38,6 +39,14 @@ namespace PlatformerDemo
             var mouse = Mouse.GetState();
             if (mouse.LeftPressed(this))
                 this.m_JumpHandle.Play();
+            
+            var onGround = this.m_Platforming.IsOnGround(
+                this,
+                gameContext.World.Entities.Cast<IBoundingBox>(),
+                x => x is Solid);
+            if (!onGround)
+                this.m_Platforming.ApplyGravity(this, 0, 0.5f);
+            this.m_Platforming.ClampSpeed(this, null, 12);
         }
         
         public override void Render(IGameContext gameContext, IRenderContext renderContext)
