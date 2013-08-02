@@ -12,9 +12,13 @@ namespace PlatformerDemo
     {
         private IRenderUtilities m_RenderUtilities;
     
-        public Solid(IRenderUtilities renderUtilities)
+        public Solid(IRenderUtilities renderUtilities, float x, float y, float width, float height)
         {
             this.m_RenderUtilities = renderUtilities;
+            this.X = x;
+            this.Y = y;
+            this.Width = width;
+            this.Height = height;
         }
     
         public override void Render(IGameContext gameContext, IRenderContext renderContext)
@@ -24,7 +28,8 @@ namespace PlatformerDemo
             this.m_RenderUtilities.RenderRectangle(
                 renderContext,
                 this.ToRectangle(),
-                Color.Black);
+                Color.Black,
+                filled: true);
         }
     }
 }
