@@ -31,6 +31,17 @@ namespace PlatformerDemo
             this.m_JumpSound = this.m_AssetManager.Get<AudioAsset>("audio.Jump");
             
             this.m_JumpHandle = this.m_AudioUtilities.Play(this.m_JumpSound);
+            
+            this.Width = 16;
+            this.Height = 16;
+        }
+        
+        private bool OnGround(IGameContext gameContext)
+        {
+            return this.m_Platforming.IsOnGround(
+                this,
+                gameContext.World.Entities.Cast<IBoundingBox>(),
+                x => x is Solid);
         }
         
         public override void Update(IGameContext gameContext, IUpdateContext updateContext)
@@ -38,18 +49,31 @@ namespace PlatformerDemo
             base.Update(gameContext, updateContext);
             
             var mouse = Mouse.GetState();
+            var keyboard = Keyboard.GetState();
             if (mouse.LeftPressed(this))
+            {
+                this.X = mouse.X;
+                this.Y = mouse.Y;
+                this.XSpeed = 0;
+                this.YSpeed = 0;
                 this.m_JumpHandle.Play();
+            }
+            if (keyboard.IsKeyDown(Keys.Left))
+                this.m_Platforming.ApplyMovement(this, -4, 0, gameContext.World.Entities.Cast<IBoundingBox>(), x => x is Solid);
+            if (keyboard.IsKeyDown(Keys.Right))
+                this.m_Platforming.ApplyMovement(this, 4, 0, gameContext.World.Entities.Cast<IBoundingBox>(), x => x is Solid);
             
-            Func<bool> onGround = () => this.m_Platforming.IsOnGround(
-                this,
-                gameContext.World.Entities.Cast<IBoundingBox>(),
-                x => x is Solid);
-            if (!onGround())
+            if (!this.OnGround(gameContext))
                 this.m_Platforming.ApplyGravity(this, 0, 0.5f);
-            else
-                this.m_Platforming.ApplyActionUntil(this, a => a.Y += 1, a => onGround(), 12);
+            else if (this.YSpeed > 0)
+            {
+                this.YSpeed = 0;
+                this.m_Platforming.ApplyActionUntil(this, a => a.Y += 1, a => this.OnGround(gameContext), 12);
+            }
             this.m_Platforming.ClampSpeed(this, null, 12);
+            
+            if (keyboard.IsKeyPressed(Keys.Up) && this.OnGround(gameContext))
+                this.YSpeed = -6;
         }
         
         public override void Render(IGameContext gameContext, IRenderContext renderContext)
