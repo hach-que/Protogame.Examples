@@ -20,17 +20,6 @@ namespace PlatformerDemo
             this.Width = width;
             this.Height = height;
         }
-    
-        public override void Render(IGameContext gameContext, IRenderContext renderContext)
-        {
-            base.Render(gameContext, renderContext);
-            
-            this.m_RenderUtilities.RenderRectangle(
-                renderContext,
-                this.ToRectangle(),
-                Color.Black,
-                filled: true);
-        }
     }
 }
 

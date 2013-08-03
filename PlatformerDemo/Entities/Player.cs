@@ -32,8 +32,8 @@ namespace PlatformerDemo
             
             this.m_JumpHandle = this.m_AudioUtilities.Play(this.m_JumpSound);
             
-            this.Width = 16;
-            this.Height = 16;
+            this.Width = 32;
+            this.Height = 32;
         }
         
         private bool OnGround(IGameContext gameContext)
