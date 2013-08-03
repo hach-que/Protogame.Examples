@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentProject Name="PlatformerDemo.Content">
   
-    <Source Include="PlatformerDemo.Content/assets" Match="*.asset" />
+    <Source Include="PlatformerDemo.Content/assets" Match="*.asset" Primary="true" />
   
 </ContentProject>
