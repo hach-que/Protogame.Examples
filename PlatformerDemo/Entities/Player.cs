@@ -10,7 +10,7 @@ namespace PlatformerDemo
     {
         private IPlatforming m_Platforming;
         private IAssetManager m_AssetManager;
-        private IRenderUtilities m_RenderUtilities;
+        private I2DRenderUtilities m_RenderUtilities;
         private IAudioUtilities m_AudioUtilities;
         private TextureAsset m_Texture;
         private AudioAsset m_JumpSound;
@@ -19,7 +19,7 @@ namespace PlatformerDemo
         public Player(
             IPlatforming platforming,
             IAssetManager assetManager,
-            IRenderUtilities renderUtilities,
+            I2DRenderUtilities renderUtilities,
             IAudioUtilities audioUtilities)
         {
             this.m_Platforming = platforming;

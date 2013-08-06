@@ -10,9 +10,9 @@ namespace PlatformerDemo
     /// </summary>
     public class Solid : Entity, ISolidEntity
     {
-        private IRenderUtilities m_RenderUtilities;
+        private I2DRenderUtilities m_RenderUtilities;
     
-        public Solid(IRenderUtilities renderUtilities, float x, float y, float width, float height)
+        public Solid(I2DRenderUtilities renderUtilities, float x, float y, float width, float height)
         {
             this.m_RenderUtilities = renderUtilities;
             this.X = x;

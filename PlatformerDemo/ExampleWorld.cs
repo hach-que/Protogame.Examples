@@ -6,7 +6,7 @@ namespace PlatformerDemo
 {
     public class ExampleWorld : IWorld
     {
-        private IRenderUtilities m_RenderUtilities;
+        private I2DRenderUtilities m_RenderUtilities;
         private IAssetManager m_AssetManager;
         private IProfiler m_Profiler;
         private ILevelManager m_LevelManager;
@@ -15,7 +15,7 @@ namespace PlatformerDemo
     
         public ExampleWorld(
             IPlatforming platforming,
-            IRenderUtilities renderUtilities,
+            I2DRenderUtilities renderUtilities,
             IAssetManagerProvider assetManagerProvider,
             IAudioUtilities audioUtilities,
             IProfiler profiler,
@@ -34,6 +34,10 @@ namespace PlatformerDemo
                 audioUtilities) { X = 400 });
                 
             this.m_LevelManager.Load(this, "level.Level0");
+        }
+        
+        public void Dispose()
+        {
         }
 
         public void RenderBelow(IGameContext gameContext, IRenderContext renderContext)
